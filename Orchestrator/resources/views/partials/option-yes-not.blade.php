@@ -1,2 +1,2 @@
-<option value="false">Habilitado</option>
-<option value="true" {{ $val == 'true' ? 'selected="selected"' : '' }}>Deshabilitado</option>
+<option value="0">Habilitado</option>
+<option value="1" {{ $val == '1' ? 'selected="selected"' : '' }}>Deshabilitado</option>

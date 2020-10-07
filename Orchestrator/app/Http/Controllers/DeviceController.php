@@ -28,7 +28,7 @@ class DeviceController extends Controller
     public function create()
     {
         // Se crea una instancia de Device para evitar que rompa
-        return view('device.create', ['post' => new Device()]);
+        return view('device.create', ['device' => new Device()]);
     }
 
     /**
