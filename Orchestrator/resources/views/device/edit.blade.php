@@ -4,7 +4,8 @@
 
 @include('partials.validation-error')
 
-<form action="{{ route("device.store") }}" method="POST">
+<form action="{{ route("update",$device->id) }}" method="POST">
+    @method('PUT')
     @include('device._form')
 </form>
 
