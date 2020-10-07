@@ -49,7 +49,7 @@
             </td>
             <td>
                 <a href="{{ route('device.show',$device->id) }}" class="btn btn-primary">Ver</a>
-                <a href="{{ route('device.edit',$device->id) }}" class="btn btn-primary">Actualizar</a>
+                <a href="{{ route('device.edit',$device->id) }}" class="btn btn-primary">Editar</a>
 
                 <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $device->id }}"
                     class="btn btn-danger">Borrar</button>
@@ -92,22 +92,24 @@
 </div>
 
 <script>
-    $('#deleteModal').on('show.bs.modal', function (event) {
-        
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var id = button.data('id') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    window.onload = function(){
+        $('#deleteModal').on('show.bs.modal', function (event) {
+                
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
-  action = $('#formDelete').attr('data-action').slice(0,-1)
-  action += id
-  console.log(action)
+        action = $('#formDelete').attr('data-action').slice(0,-1)
+        action += id
+        console.log(action)
 
-  $('#formDelete').attr('action',action)
+        $('#formDelete').attr('action',action)
 
-  var modal = $(this)
-  modal.find('.modal-title').text('Dispositivo: ' + id)
-})
+        var modal = $(this)
+        modal.find('.modal-title').text('Dispositivo: ' + id)
+        });
+    };
 </script>
 
 @endsection
