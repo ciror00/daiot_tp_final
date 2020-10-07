@@ -13,6 +13,10 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("nosotros");
+
+Route::get('/home', function () {
+    return view('master');
+})->name("home");
 
 Route::resource('admin/device', 'DeviceController');
