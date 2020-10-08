@@ -1,0 +1,17 @@
+{
+    "network": {
+        "ssid": "",
+        "password": ""
+    },
+    "mqtt": {
+        "broker": "",
+        "user": "",
+        "password": "",
+        "topic_pub": "",
+        "topic_sub": ""
+    },    
+    "parameters": {
+        "interval": 30
+    },
+    "model": ""
+}
