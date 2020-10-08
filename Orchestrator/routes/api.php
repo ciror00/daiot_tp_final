@@ -17,4 +17,6 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::resource('measurement', 'MeasurementController');
+Route::resource('measurement', 'MeasurementController')->only([
+    'index', 'show'
+]);
