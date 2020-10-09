@@ -37,6 +37,6 @@ class MeasurementController extends ApiResponseController
         //$sample = Measurement::orderBy('created_at', 'desc')->paginate(10);
         $measurement->device_id;
         //return response()->json($measurement);
-        return $this->successResponse($post);
+        return $this->successResponse($measurement);
     }
 }

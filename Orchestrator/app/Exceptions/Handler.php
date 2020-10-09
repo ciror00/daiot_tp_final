@@ -3,10 +3,15 @@
 namespace App\Exceptions;
 
 use Exception;
+use App\Traits\ApiResponse;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
+    // Agrega esto para manejar excepciones
+    use ApiResponse;
     /**
      * A list of the exception types that are not reported.
      *
@@ -46,6 +51,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        //dd($exception);
+        if($exception instanceof NotFoundHttpException){
+            return $this->errorResponse('Pagina no encontrada', $code=404, $msj = 'Pagina no encontrada');
+        }
+
+        if($exception instanceof ModelNotFoundException){
+            return $this->errorResponse('Valor no encontrada', $code=404, $msj = 'Valor no encontrada');
+        }
+
+        // Se crea esta condicional para mandejo de excepsiones segun el ambiente
+        if(env('APP_ENV') == 'local'){
+            return parent::render($request, $exception);
+        }else{
+            return parent::render($request, $exception);
+        }
+
     }
 }
