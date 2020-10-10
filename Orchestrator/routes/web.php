@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("nosotros");
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/home', function () {
-    return view('master');
-})->name("home");
+Route::get('/', 'web\WebController@index')->name('index');
 
 Route::resource('admin/device', 'DeviceController');
+
