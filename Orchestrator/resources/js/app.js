@@ -26,7 +26,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.component('list-measurements', require('./components/ListMeasurementsComponent.vue').default);
 
-const app = new Vue({
+var app = new Vue({
     el: '#app',
-});
+    data: {
+      message: 'Nueva aplicacion!',
+      device: [{'id': 1, 'uuid': '058d10ca'}, {'id': 2, 'uuid': '058d10ca'}],
+      meassurement: [
+          {'temperature': 20.00, 'pressure': 1.00, 'humidity': 0.00},
+          {'temperature': 20.00, 'pressure': 1.00, 'humidity': 0.00},
+      ]
+    }
+  })
+
