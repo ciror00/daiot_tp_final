@@ -21,7 +21,7 @@ class MeasurementController extends ApiResponseController
         $measurement = Measurement::
             join('devices', 'measurements.device_id', '=' ,'devices.id')->
             select('devices.uuid', 'measurements.temperature', 'measurements.pressure', 'measurements.humidity')->
-            orderBy('measurements.created_at', 'desc')->paginate(1);
+            orderBy('measurements.created_at', 'desc')->paginate(10);
         //return response()->json($measurement);
         return $this->successResponse($measurement, 200);
     }
