@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="page-footer font-small cyan darken-3">
+<footer class="page-footer font-small cyan darken-3 mt-5">
   
     <!-- Copyright -->
     
