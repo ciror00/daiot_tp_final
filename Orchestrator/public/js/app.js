@@ -1954,6 +1954,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /*
 Por los ciclos de vida de Vue, hay que tener en cuenta el orden:
@@ -76346,21 +76348,14 @@ var render = function() {
     "div",
     [
       _c("line-chart", {
-        staticClass: "small",
-        attrs: { "chart-data": _vm.datacollection, height: _vm.auto }
-      }),
-      _vm._v(" "),
-      _vm._l(_vm.replies, function(reply) {
-        return _c("div", { key: reply.id, staticClass: "card mt-3 mp-1" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("h5", [_vm._v(_vm._s(reply.id))]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(reply))])
-          ])
-        ])
+        attrs: {
+          "chart-data": _vm.datacollection,
+          height: _vm.auto,
+          width: 1250
+        }
       })
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []

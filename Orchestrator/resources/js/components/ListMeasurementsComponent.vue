@@ -1,12 +1,14 @@
 <template>
     <div>
-        <line-chart class="small" :chart-data="datacollection" :height="auto"></line-chart>
+        <line-chart :chart-data="datacollection" :height="auto" :width="1250"></line-chart>
+        <!--
         <div class= "card mt-3 mp-1" v-for="reply in replies" :key="reply.id">
             <div class="card-body">
                 <h5>{{reply.id}}</h5>
                 <p class="card-text">{{reply}}</p>
             </div>
         </div>
+        -->
     </div>
 </template>
 
