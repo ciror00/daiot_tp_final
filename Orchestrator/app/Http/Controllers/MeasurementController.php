@@ -20,8 +20,8 @@ class MeasurementController extends ApiResponseController
         //$sample = Measurement::orderBy('created_at', 'desc')->paginate(1);
         $measurement = Measurement::
             join('devices', 'measurements.device_id', '=' ,'devices.id')->
-            select('devices.uuid', 'measurements.temperature', 'measurements.pressure', 'measurements.humidity')->
-            orderBy('measurements.created_at', 'desc')->paginate(10);
+            select('devices.uuid as uuid', 'measurements.created_at as date', 'measurements.temperature as temperature', 'measurements.pressure as pressure', 'measurements.humidity as humidity')->
+            orderBy('measurements.created_at', 'desc')->paginate(5);
         //return response()->json($measurement);
         return $this->successResponse($measurement, 200);
     }
