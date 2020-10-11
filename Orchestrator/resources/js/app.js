@@ -28,15 +28,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 Vue.component('list-measurements', require('./components/ListMeasurementsComponent.vue').default);
 
+
 var app = new Vue({
     el: '#app',
     data: {
-      message: 'Nueva aplicacion!',
-      device: [{'id': 1, 'uuid': '058d10ca'}, {'id': 2, 'uuid': '058d10ca'}],
-      meassurement: [
-          {'temperature': 20.00, 'pressure': 1.00, 'humidity': 0.00},
-          {'temperature': 20.00, 'pressure': 1.00, 'humidity': 0.00},
-      ]
+      device: '058d10ca',
     }
   })
 

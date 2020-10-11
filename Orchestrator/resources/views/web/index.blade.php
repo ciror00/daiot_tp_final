@@ -1,5 +1,5 @@
 @extends('web.master')
 @section('content')
-    <h1>@{{ message }}</h1>  
+    <h1>@{{ device }}</h1>  
     <list-measurements title="Mediciones"></list-measurements>
 @endsection
