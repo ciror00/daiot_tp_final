@@ -26,6 +26,12 @@ class MeasurementController extends ApiResponseController
         return $this->successResponse($measurement, 200);
     }
 
+    public function store(Request $request)
+    {
+        $measurement = Measurement::create($request->all());
+        return $this->createdResponse($measurement);
+    }
+
     /**
      * Display the specified resource.
      *

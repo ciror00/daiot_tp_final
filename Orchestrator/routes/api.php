@@ -18,5 +18,5 @@ use Illuminate\Http\Request;
 // });
 
 Route::resource('measurement', 'MeasurementController')->only([
-    'index', 'show'
+    'index', 'show', 'store'
 ]);
