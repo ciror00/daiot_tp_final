@@ -29,8 +29,6 @@ bus = machine.I2C(sda=machine.Pin(SDA), scl=machine.Pin(SCL))
 print(bus.scan())
 
 sensor = BMP280(bus)
-#sensor.oversample_sett = 2
-#sensor.baseline = 101325
 
 while True:
     led.value(1)
@@ -43,18 +41,21 @@ while True:
         Armado de JSON
     '''
 
-    json = {"device-id": "", "temperature": "", "pressure": "", "humidity": ""}
-    json['device-id'] = client_id
-    json['temperature'] = temp
-    json['pressure'] = press
-    json['humidity'] = hum
+    json = {"temperature": "", "pressure": "", "humidity": "", "uuid": ""}
+    json["uuid"] = str(client_id)[2:13]
+    json["temperature"] = temp
+    json["pressure"] = press
+    json["humidity"] = hum
     print(json)
 
     '''
         Envio de datos
     '''
-    broker.publish(cfg.get_topic_pub(), str(json))
+    topic_route = cfg.get_topic_pub()
+    print(topic_route)
+    broker.publish(topic_route, str(json))
 
     print('Ciclo terminado')
     led.value(0)
+    #break
     time.sleep(cfg.get_interval())

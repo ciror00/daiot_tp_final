@@ -1,3 +1,3 @@
-mosquitto_pub -d -h localhost -t app/058d10ca -m '{"temperature":"33.24","pressure":"4.23","humidity":"5.12"}'
+mosquitto_pub -d -h localhost -t app/a4cf1224530 -m '{"temperature":"33.24","pressure":"4.23","humidity":"5.12"}'
 
 mosquitto_sub -d -h localhost -t app/#
