@@ -9,6 +9,7 @@ global client_id
     Configuracion Global
 '''
 cfg = Configuration(prod=False)
+led = machine.Pin(2, machine.Pin.OUT)
 
 '''
     Configuracion de Wifi
@@ -32,16 +33,17 @@ sensor = BMP280(bus)
 #sensor.baseline = 101325
 
 while True:
+    led.value(1)
     temp = sensor.temperature
     press = sensor.pressure/100
     hum = 0
-    print('Temperatura: %s | Presion: %s | Humedad: %s' % (temp, p, altitude))
+    print('Temperatura: %s | Presion: %s | Humedad: %s' % (temp, press, hum))
 
     '''
         Armado de JSON
     '''
 
-    json = {"device-id": "", "temperature": "", "pressure": "", "altitude": ""}
+    json = {"device-id": "", "temperature": "", "pressure": "", "humidity": ""}
     json['device-id'] = client_id
     json['temperature'] = temp
     json['pressure'] = press
@@ -51,6 +53,8 @@ while True:
     '''
         Envio de datos
     '''
-    broker.publish(cfg.get_topic_pub(), json)
+    broker.publish(cfg.get_topic_pub(), str(json))
 
+    print('Ciclo terminado')
+    led.value(0)
     time.sleep(cfg.get_interval())
