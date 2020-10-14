@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'web\WebController@index')->name('index');
+Route::get('/', 'web\WebController@index')->name('home');
 
 Route::resource('admin/device', 'DeviceController');
 
