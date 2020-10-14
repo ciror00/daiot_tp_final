@@ -1,6 +1,6 @@
 <template>
     <div>
-        <line-chart :chart-data="datacollection" :height="auto" :width="1250"></line-chart>
+        <line-chart :chart-data="datacollection" :width="1350" :key="componentKey"></line-chart>
         <!--
         <div class= "card mt-3 mp-1" v-for="reply in replies" :key="reply.id">
             <div class="card-body">
@@ -9,6 +9,7 @@
             </div>
         </div>
         -->
+        <button v-on:click="getMeassurement" style="display:block;">Reload</button>
     </div>
 </template>
 
@@ -31,6 +32,7 @@ export default {
             samples: {labels: [], datasets: []},
             datacollection: {labels: [], datasets: []},
             replies: [],
+            componentKey: 0,
         } 
     },
     mounted () {
@@ -62,12 +64,13 @@ export default {
                         pres[i] = value[i].pressure;
                 }
                 this.samples.datasets = [
-                    {label: 'temperature', data: temp},
-                    {label: 'pressure', data: pres},
-                    {label: 'humidity', data: hum}
+                    {label: 'Temperatura [°C]', data: temp, backgroundColor: 'transparent', borderColor: 'red'},
+                    {label: 'Presion[PSI]', data: pres, backgroundColor: 'transparent', borderColor: 'blue'},
+                    {label: 'Humedad [%]', data: hum, backgroundColor: 'transparent', borderColor: 'purple'}
                     ];
                 this.datacollection = this.samples
-            });
+            })
+            .then(reload => this.componentKey += 1)
         },
         // fillData: function(){
         //     this.datacollection = {
