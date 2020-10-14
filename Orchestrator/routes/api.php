@@ -21,6 +21,6 @@ Route::resource('measurement', 'MeasurementController')->except([
     'create', 'edit', 'update', 'destroy'
 ]);
 
-// GE: /api/device/list/1
+// GE: /api/device/list/a4cf1224530
 
 Route::get('device/list/{uuid?}','MeasurementController@device', );
