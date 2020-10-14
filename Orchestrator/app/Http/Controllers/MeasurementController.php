@@ -28,9 +28,9 @@ class MeasurementController extends ApiResponseController
     }
 
     // Esta funcion deberia estar en otro controlador totalmente aparte
-    public function device($device_id = 0)
+    public function device($device_id = NULL)
     {
-        if($device_id != 0){
+        if($device_id != NULL){
             $device = Device::
                 where('uuid', $device_id)->
                 select('uuid', 'id')->
