@@ -1956,6 +1956,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /*
 Por los ciclos de vida de Vue, hay que tener en cuenta el orden:
@@ -1978,7 +1979,8 @@ Por los ciclos de vida de Vue, hay que tener en cuenta el orden:
         labels: [],
         datasets: []
       },
-      replies: []
+      replies: [],
+      componentKey: 0
     };
   },
   mounted: function mounted() {//this.fillData();
@@ -2015,16 +2017,24 @@ Por los ciclos de vida de Vue, hay que tener en cuenta el orden:
         }
 
         _this.samples.datasets = [{
-          label: 'temperature',
-          data: temp
+          label: 'Temperatura [°C]',
+          data: temp,
+          backgroundColor: 'transparent',
+          borderColor: 'red'
         }, {
-          label: 'pressure',
-          data: pres
+          label: 'Presion[PSI]',
+          data: pres,
+          backgroundColor: 'transparent',
+          borderColor: 'blue'
         }, {
-          label: 'humidity',
-          data: hum
+          label: 'Humedad [%]',
+          data: hum,
+          backgroundColor: 'transparent',
+          borderColor: 'purple'
         }];
         _this.datacollection = _this.samples;
+      }).then(function (reload) {
+        return _this.componentKey += 1;
       });
     } // fillData: function(){
     //     this.datacollection = {
@@ -76348,12 +76358,18 @@ var render = function() {
     "div",
     [
       _c("line-chart", {
-        attrs: {
-          "chart-data": _vm.datacollection,
-          height: _vm.auto,
-          width: 1250
-        }
-      })
+        key: _vm.componentKey,
+        attrs: { "chart-data": _vm.datacollection, width: 1350 }
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticStyle: { display: "block" },
+          on: { click: _vm.getMeassurement }
+        },
+        [_vm._v("Reload")]
+      )
     ],
     1
   )
