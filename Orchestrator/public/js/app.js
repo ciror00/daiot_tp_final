@@ -76359,7 +76359,7 @@ var render = function() {
     [
       _c("line-chart", {
         key: _vm.componentKey,
-        attrs: { "chart-data": _vm.datacollection, width: 1350 }
+        attrs: { "chart-data": _vm.datacollection, width: 1100 }
       }),
       _vm._v(" "),
       _c(

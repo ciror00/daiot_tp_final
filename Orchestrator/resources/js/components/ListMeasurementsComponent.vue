@@ -1,6 +1,6 @@
 <template>
     <div>
-        <line-chart :chart-data="datacollection" :width="1350" :key="componentKey"></line-chart>
+        <line-chart :chart-data="datacollection" :width="1100" :key="componentKey"></line-chart>
         <!--
         <div class= "card mt-3 mp-1" v-for="reply in replies" :key="reply.id">
             <div class="card-body">
