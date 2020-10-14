@@ -64,6 +64,12 @@ Cuando el proyecto este iniciado, tendremos los siguiente modulos funcionando.
  - Dashboard: ["raiz"](http://localhost:8000/)
  - CRUD Devices: [/admin/device](http://localhost:8000/admin/device)
 
+**Dashboard**
+![Componentes](Device/doc/dashboard.png)
+
+**CRUD Device**
+
+![Componentes](Device/doc/crud.png)
 
 #### Service
 
