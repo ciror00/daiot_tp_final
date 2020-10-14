@@ -17,6 +17,10 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::resource('measurement', 'MeasurementController')->only([
-    'index', 'show'
+Route::resource('measurement', 'MeasurementController')->except([
+    'create', 'edit', 'update', 'destroy'
 ]);
+
+// GE: /api/device/list/a4cf1224530
+
+Route::get('device/list/{uuid?}','MeasurementController@device', );

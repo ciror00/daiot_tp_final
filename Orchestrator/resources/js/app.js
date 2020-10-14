@@ -32,7 +32,7 @@ Vue.component('list-measurements', require('./components/ListMeasurementsCompone
 var app = new Vue({
     el: '#app',
     data: {
-      device: '058d10ca',
+      device: 'a4cf1224530',
     }
   })
 

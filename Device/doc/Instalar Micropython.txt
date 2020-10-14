@@ -1,0 +1,151 @@
+# Micropython
+## Precondiciones
+
+Antes de de comenzar, se tiene que tener instaladas las siguientes herramientas
+- Python 3.X
+- pip
+
+## ESPtool
+
+Es la herramienta con la que se instalará micropython en la placa.
+Desde la consola se tiene que utilizar el gestor de paquetes de python para instalar la herramientas.
+```
+> pip install esptool
+```
+Una vez instalada la herramienta, podemos utilizarla por consola.
+
+## MPFShell
+Es otra herramienta, pero esta sirve para subir archivos al microcontrolador.
+Desde la consola se tiene que utilizar el gestor de paquetes de python para instalar la herramientas.
+```
+>pip install mpfshell
+```
+## Micropython
+
+Es la adapatacion del lenguaje python3 para microprocesadores.
+
+Para instalarlo primero se tiene que descargar el firmware desde la pagina de Micropython. Segun corresponda la placa que queremos usar:
+
+ - http://www.micropython.org/download#esp32
+ - http://micropython.org/download#esp8266
+
+Descargar la ultima version: 
+ - esp8266-20aammdd-vx.x.x-xx-g000000000.bin (elf, map)
+ - esp32-20aammdd-vx.x.x-xx-g000000000.bin (latest)
+
+## Pasos basicos para comenzar a trabajar
+Se tiene que formatear la placa para instalar el firmware de Micropython. Un procedimiento parecido al de una PC donde queremos instalar un sistema operativo.
+
+### Instalando micropython
+Se tiene que conectar la placa y verificar en que puerto es reconocido. Una vez encontrado el puerto, se tiene que usar el comando para formatear la placa.
+```
+esptool --port COM9 erase_flash
+```
+*Se tiene que reemplazar la X por el numero de puerto reconocido*
+*Tener presente que para cualquier interaccion entre el ESP32 y el ESPTool, se tiene que apretar el boton "boot"*
+
+Luego, desde la carpeta donde se descargo el firmware, abrir una consola o termina para ejectuar el comando para hacer la ins y ejecturar el comando para instalarlo.
+
+ - En el caso de una ESP12 (NodeMCU)
+```
+esptool --port COM8 --baud 460800 write_flash --flash_size=detect -fm dio 0 esp8266-20aammdd-vx.x.x-xx-g000000000.bin
+```
+ - En el caso de una ESP32
+```
+esptool --chip esp32 --port COM9 write_flash -z 0x1000 esp32-20aammdd-vx.x.x-xx-g000000000.bin
+```
+*En cambos casos, se tiene que reemplazar COMx por el puerto correspondiente*
+*Cuando estamos en la carpeta, con usar tabulador se autocompleta el nombre del archivos con los datos de la version*
+
+### Pruba de funcionamiento
+Para comprobar que esta funcionando correctamente, desde un programa se debe ingresar por puerto serie a la placa (por ejemplo el PuTTY).
+Si buscamos el puerto donde se encuentra conectada la placa, y nos conectamos a 115200 baudios, podremos interactuar con el REPL (Read Evaluate Print Loop) donde prodremos ejecutar comandos de Python en tiempo real.
+Por ejemplo:
+```
+>>> print("Hola Mundo")
+```
+
+## Subir archivos desde la PC
+
+Una vez instalada la herramienta, podemos utilizarla por consola.
+
+Ejecutamos el comando desde consola, parados en la carpeta donde estan los archivos de nuestro codigo.
+```
+>mpfshell
+```
+Podemos utilizar el comando _help_ para ver la lista de comandos.
+```
+mpfs [/]> help
+```
+Lo primero que tenemos que hacer es abrir el puerto donde esta conectada la placa
+```
+mpfs [/]> open comX
+```
+Y miestra el mensaje _Connected to esp8266_.
+
+Adentro de se puede navegar como en un bach. Se ejecutan diferentes codigos para subir, descargar y borrar archivos.
+
+ - Descargar archivos
+```
+mpfs [/]> get boot.py
+```
+ - Subir archivos
+```
+mpfs [/]> put codigoPropio.py
+```
+ - Borrar archivos
+```
+mpfs [/]> rm codigoPropio.py
+```
+
+## Compilar archivos
+
+Ejecutamos el comando desde consola, parados en la carpeta donde estan los archivos de nuestro codigo.
+```
+>pip install mpy-cross
+```
+
+Dese windows, nos paramos en la carpeta y ejecutamos el comando
+```
+>python -m mpy_cross archivo.py
+```
+Se genera el archivo mpy en la carpeta
+
+## Visual Studio Code
+
+Primero se tiene que instalar el plugin Pymakr
+
+Ingresando en la opcion All commands -> Global Settings se abra el archivo de configuracion **pymakr.json**
+```
+{
+	"address": "COM10",
+	"username": "",
+	"password": "",
+	"sync_folder": "",
+	"open_on_start": true,
+	"safe_boot_on_upload": false,
+	"py_ignore": [
+		"pymakr.conf",
+		".vscode",
+		".gitignore",
+		".git",
+		"project.pymakr",
+		"env",
+		"venv"
+	],
+	"fast_upload": false,
+	"sync_file_types": "py,txt,log,json,xml,html,js,css,mpy",
+	"ctrl_c_on_connect": false,
+	"sync_all_file_types": false,
+	"auto_connect": true,
+	"autoconnect_comport_manufacturers": [
+		"Pycom",
+		"Pycom Ltd.",
+		"FTDI",
+		"Microsoft",
+		"Microchip Technology, Inc.",
+		"wch.cn",
+		"Silicon Labs"
+	]
+}
+```

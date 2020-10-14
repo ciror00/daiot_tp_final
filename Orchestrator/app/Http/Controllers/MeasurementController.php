@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Device;
 use App\Measurement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\api\ApiResponseController;
@@ -24,6 +25,31 @@ class MeasurementController extends ApiResponseController
             orderBy('measurements.created_at', 'desc')->paginate(5);
         //return response()->json($measurement);
         return $this->successResponse($measurement, 200);
+    }
+
+    // Esta funcion deberia estar en otro controlador totalmente aparte
+    public function device($device_id = NULL)
+    {
+        if($device_id != NULL){
+            $device = Device::
+                where('uuid', $device_id)->
+                select('uuid', 'id')->
+                get();
+        }else{
+            $device = Device::select('uuid', 'id')->
+            get();
+        }
+        return $this->successResponse($device, 200);
+    }
+
+    public function store(Request $request)
+    {
+        //$_device = Device::where('uuid', $request->device_id)->get();
+        //echo $_device->mapWithKeys('id');
+        //echo $_id;
+        //$request->merge(['device_id' => 1]);
+        $measurement = Measurement::create($request->all());
+        return $this->createdResponse($measurement);
     }
 
     /**
